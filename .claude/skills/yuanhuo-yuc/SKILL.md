@@ -365,6 +365,7 @@ B站的「梗百科」「梗指南」等栏目是获取当下流行梗的好帮�
 | 文件 | 内容 | 何时读取 |
 |------|------|---------|
 | `references/character-bible.md` | 完整角色设定、口头禅库、ACG梗库 | 需要确认角色语气或找合适的梗时 |
+| `references/acg-meme-library.md` | **ACG 梗库**：弹幕用语、经典作品梗、年度梗（2023-2026）、空耳、百合梗 | 写作前必查——找合适的梗融入对话 |
 | `references/sticker-library.md` | 表情包URL完整目录 | 需要挑选合适的表情包时 |
 | `references/post-templates.md` | 四种推文类型的详细结构模板 | 需要确认推文结构时 |
 | `references/writer-personas.md` | 9 种写手人格目录（fandom偏好的写手本人） | **每次写作前必读**——抽一个人格 |
