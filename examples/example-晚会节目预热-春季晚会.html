@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0,viewport-fit=cover">
+<title>【节目预热】春季晚会</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;
+    font-size:16px;color:rgb(62,62,62);background:#ededed;
+    line-height:1.8;-webkit-text-size-adjust:100%;
+  }
+  .post{max-width:677px;margin:0 auto;background:#fff;padding:0 0 32px}
+
+  /* 推文头部 */
+  .article-header{padding:20px 16px 0}
+  .article-header .title{font-size:22px;font-weight:700;color:rgb(34,34,34);line-height:1.5;margin:0 0 12px}
+  .article-header .meta{display:flex;align-items:center;gap:6px;font-size:14px;color:rgba(0,0,0,0.5);padding-bottom:16px;border-bottom:1px solid rgba(0,0,0,0.08)}
+  .article-header .meta .author{color:rgba(0,0,0,0.65)}
+  .article-header .meta .dot{margin:0 2px;color:rgba(0,0,0,0.3)}
+  .article-header .meta .account{color:rgb(87,107,149);font-weight:500}
+  .article-header .meta .date{color:rgba(0,0,0,0.45);margin-left:auto}
+
+  /* 聊天气泡 */
+  .msg-row{display:flex;flex-flow:row nowrap;margin:0.5em 0;max-width:100%}
+  .msg-yanyuan{justify-content:flex-end}
+  .msg-yanhuo{justify-content:flex-start}
+  .msg-text{display:inline-block;vertical-align:top;width:80%;padding:0 10px}
+  .msg-yanyuan .msg-text{text-align:right}
+  .msg-yanhuo .msg-text{text-align:left}
+  .name-label{font-size:14px;color:rgb(0,0,0);margin-bottom:2px}
+  .bubble-wrap{display:flex;align-items:flex-start}
+  .msg-yanyuan .bubble-wrap{justify-content:flex-end}
+  .msg-yanhuo .bubble-wrap{justify-content:flex-start}
+  .arrow{width:0;height:0;margin-top:1em;flex-shrink:0}
+  .arrow-left{border-right:10px solid rgba(155,0,0,0.63);border-top:6px solid transparent;border-bottom:6px solid transparent}
+  .arrow-right{border-left:10px solid rgb(95,156,239);border-top:6px solid transparent;border-bottom:6px solid transparent}
+  .bubble{display:inline-block;vertical-align:middle;padding:8px 12px;border-radius:0.5em;max-width:90%;color:#fff;font-size:14px;text-align:left;line-height:1.5}
+  .bubble-yanyuan{background-color:rgb(95,156,239)}
+  .bubble-yanhuo{background-color:rgba(155,0,0,0.63)}
+  .avatar{display:inline-block;vertical-align:top;width:20%;text-align:center;line-height:0;flex-shrink:0}
+  .avatar img{width:100%;max-width:68px;border-radius:6px;object-fit:cover;vertical-align:middle}
+
+  /* 时间地点 */
+  .info-line{margin:12px 0 8px 0;display:flex;align-items:center;gap:8px}
+  .info-line .icon-img{width:30px;height:30px;flex-shrink:0;background-color:rgb(161,23,23);object-fit:contain}
+  .info-line span{font-size:14px;color:rgb(161,23,23);font-weight:600}
+
+  /* 节目项 */
+  .program-item{margin:18px 10px;padding-bottom:14px;border-bottom:1px dashed #e0e0e0}
+  .program-item .prog-num{display:inline-block;background:rgb(155,0,0);color:#fff;width:28px;height:28px;line-height:28px;text-align:center;border-radius:50%;font-size:13px;font-weight:700;margin-right:8px}
+  .program-item .prog-title{font-size:17px;font-weight:700;display:inline}
+  .program-item .prog-by{font-size:13px;color:#888;margin:4px 0}
+  .program-item .prog-img{width:100%;margin:8px 0;border-radius:6px;background:rgb(245,245,245);min-height:120px;display:flex;align-items:center;justify-content:center;color:#ccc;font-size:13px}
+  .program-item .prog-desc{font-size:14px;color:#555;text-align:center;margin:4px 0}
+
+  /* 分隔线 */
+  .red-divider{display:flex;align-items:center;margin:20px 0}
+  .red-divider .line{flex:1;height:1px;background:rgb(197,36,36)}
+
+  /* 注意事项 */
+  .notice{margin:16px 10px;padding:12px 14px;background:#fffaf5;border-left:4px solid #c74;border-radius:0 8px 8px 0;font-size:14px}
+
+  /* 页脚 */
+  .post-footer{text-align:center;margin-top:20px;padding-top:20px;border-top:1px solid #eee}
+  .post-footer img{width:100%;max-width:677px;margin:0 auto 12px;display:block}
+  .post-footer p{font-size:12px;color:#aaa;margin:2px 0}
+  .disclaimer{text-align:center;font-size:11px;color:#bbb;margin:6px 0 12px;font-style:italic}
+</style>
+</head>
+<body>
+<div class="post">
+
+<!-- 推文头部 -->
+<div class="article-header">
+  <h1 class="title">【节目预热】春季晚会</h1>
+  <div class="meta">
+    <span class="author">元火宣传部</span>
+    <span class="dot">·</span>
+    <span class="account">元火动漫社</span>
+    <span class="date">2026年6月18日</span>
+  </div>
+</div>
+
+<div class="disclaimer">※ 全文纯属虚构，人名均为AI生成，如有雷同纯属巧合</div>
+
+<!-- 开场 -->
+<div class="msg-row msg-yanhuo">
+  <div class="avatar"><img src="../.claude/skills/yuanhuo-yuc/references/images/yanhuo-liren.jpg" alt="燕火"></div>
+  <div class="msg-text">
+    <div class="name-label">燕火</div>
+    <div class="bubble-wrap">
+      <div class="arrow arrow-left"></div>
+      <div class="bubble bubble-yanhuo">ohno！！大家什么都没有看到desuwa宣传部staff对不起总之快来看看春晚节目预告——</div>
+    </div>
+  </div>
+</div>
+
+<div class="red-divider"><span class="line"></span></div>
+
+<!-- 时间地点 -->
+<div class="info-line">
+  <img class="icon-img" src="../.claude/skills/yuanhuo-yuc/references/images/time-icon.jpg" alt="时间">
+  <span>5月16日（周六）18:00 — 22:00</span>
+</div>
+<div class="info-line">
+  <img class="icon-img" src="../.claude/skills/yuanhuo-yuc/references/images/location-icon.jpg" alt="地点">
+  <span>学生活动中心 多功能厅</span>
+</div>
+
+<div class="notice">
+  <b>注意：</b>请于17:30后从B101南侧门进入，进门处领取节目单（也是抽奖凭证哦）
+</div>
+
+<!-- 节目列表 -->
+<div class="program-item">
+  <span class="prog-num">01</span>
+  <span class="prog-title">《八月のif》+《God Knows》</span>
+  <div class="prog-by">by 星野（暮雨 青岚 千影 风信 霜月）</div>
+  <div class="prog-img">📷 图片暂缺</div>
+  <div class="prog-desc">尝试孵化出一个乐队 *好像成功了？</div>
+</div>
+
+<div class="msg-row msg-yanhuo">
+  <div class="avatar"><img src="../.claude/skills/yuanhuo-yuc/references/images/yanhuo-liren.jpg" alt="燕火"></div>
+  <div class="msg-text">
+    <div class="name-label">燕火</div>
+    <div class="bubble-wrap">
+      <div class="arrow arrow-left"></div>
+      <div class="bubble bubble-yanhuo">God knows... 这首歌太经典了！</div>
+    </div>
+  </div>
+</div>
+
+<div class="program-item">
+  <span class="prog-num">02</span>
+  <span class="prog-title">明日的夜空哨戒班</span>
+  <div class="prog-by">by 云汐</div>
+  <div class="prog-img">📷 图片暂缺</div>
+  <div class="prog-desc">永远握着你的手 前往明天</div>
+</div>
+
+<div class="program-item">
+  <span class="prog-num">03</span>
+  <span class="prog-title">涡流</span>
+  <div class="prog-by">by 暮雨 青岚 千影 风信 霜月 云汐 等</div>
+  <div class="prog-img">📷 图片暂缺</div>
+  <div class="prog-desc">师生就是师生啊，师生是可以变成…师生是不能…(叽里咕噜说啥呢) 家产99</div>
+</div>
+
+<div class="program-item">
+  <span class="prog-num">04</span>
+  <span class="prog-title">宅舞串烧：让全世界一起跳宅舞的魔法</span>
+  <div class="prog-by">by 晓风 残月 星野 夜雨 云汐 落樱 墨白 千影 霜月</div>
+  <div class="prog-img">📷 图片暂缺</div>
+  <div class="prog-desc">一起来开心地跳舞吧！</div>
+</div>
+
+<div class="msg-row msg-yanyuan">
+  <div class="msg-text">
+    <div class="name-label">燕元</div>
+    <div class="bubble-wrap">
+      <div class="bubble bubble-yanyuan">（突然出现）拿橙99！</div>
+      <div class="arrow arrow-right"></div>
+    </div>
+  </div>
+  <div class="avatar"><img src="../.claude/skills/yuanhuo-yuc/references/images/yanyuan-liren.jpg" alt="燕元"></div>
+</div>
+
+<div class="program-item">
+  <span class="prog-num">05</span>
+  <span class="prog-title">秀和，，，</span>
+  <div class="prog-by">by 青岚 风信</div>
+  <div class="prog-img">📷 图片暂缺</div>
+</div>
+
+<div class="program-item">
+  <span class="prog-num">06</span>
+  <span class="prog-title">世界上最幸福的女孩</span>
+  <div class="prog-by">by 暮雨 霜月</div>
+  <div class="prog-img">📷 图片暂缺</div>
+  <div class="prog-desc">"如果幸福有颜色，那一定是被终焉之红染尽的蓝"<br>钢琴和萨克斯合奏——希望能传达到珂朵莉在末日绽放的爱情和勇气</div>
+</div>
+
+<div class="program-item">
+  <span class="prog-num">07</span>
+  <span class="prog-title">Dazzling Game</span>
+  <div class="prog-by">by 云汐 千影 晓风 落樱 星野 墨白 残月 夜雨 青岚 风信</div>
+  <div class="prog-img">📷 图片暂缺</div>
+  <div class="prog-desc">星团不语，只是一味的打拳</div>
+</div>
+
+<div class="program-item">
+  <span class="prog-num">08</span>
+  <span class="prog-title">君との明日</span>
+  <div class="prog-by">by 残月</div>
+  <div class="prog-img">📷 图片暂缺</div>
+  <div class="prog-desc">「ただいま、セイバー」"我回来了，Saber"</div>
+</div>
+
+<!-- 结尾 -->
+<div class="red-divider"><span class="line"></span></div>
+
+<div class="msg-row msg-yanhuo">
+  <div class="avatar"><img src="../.claude/skills/yuanhuo-yuc/references/images/yanhuo-liren.jpg" alt="燕火"></div>
+  <div class="msg-text">
+    <div class="name-label">燕火</div>
+    <div class="bubble-wrap">
+      <div class="arrow arrow-left"></div>
+      <div class="bubble bubble-yanhuo">是许久不见的伙伴……总之总之，我现在就要看到春晚！</div>
+    </div>
+  </div>
+</div>
+
+<div class="msg-row msg-yanyuan">
+  <div class="msg-text">
+    <div class="name-label">燕元</div>
+    <div class="bubble-wrap">
+      <div class="bubble bubble-yanyuan">就在<b>本周六</b>，喜欢您来~</div>
+      <div class="arrow arrow-right"></div>
+    </div>
+  </div>
+  <div class="avatar"><img src="../.claude/skills/yuanhuo-yuc/references/images/yanyuan-liren.jpg" alt="燕元"></div>
+</div>
+
+<!-- 页脚 -->
+<div class="post-footer">
+  <img src="../.claude/skills/yuanhuo-yuc/references/images/footer.jpg" alt="元火动漫社">
+  <p>本初之火，可以燎原</p>
+  <p>微博：@北大元火动漫社 · BBS：OriginalFire版</p>
+</div>
+
+</div>
+</body>
+</html>

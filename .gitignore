@@ -1,0 +1,18 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Node (screenshot script)
+node_modules/
+
+# Local data (not for git)
+output1/
+output/
+
+# Python (if someone runs scripts locally)
+__pycache__/
+.venv

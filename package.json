@@ -1,0 +1,8 @@
+{
+  "name": "yuanhuo-skill",
+  "private": true,
+  "description": "元火动漫社语C文案写作 Skill — 依赖 puppeteer 用于 HTML→PNG 截图",
+  "dependencies": {
+    "puppeteer": "^24.43.1"
+  }
+}
