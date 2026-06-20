@@ -185,6 +185,7 @@ B站的「梗百科」「梗指南」等栏目是获取当下流行梗的好帮�
 - 分隔段落时使用分隔线装饰
 - 燕元立绘 → `references/images/yanyuan-liren.jpg`
 - 燕火立绘 → `references/images/yanhuo-liren.jpg`
+- 元火 Logo → `references/images/yuanhuo-logo.jpg`（独立 logo，页眉/水印等场景用）
 - 元火页脚图 → `references/images/footer.jpg`（带社训「本初之火，可以燎原」的完整页脚横幅）
 - **允许同一角色连续两个气泡**（582次出现在语料中）：
   - 燕火→燕火：激动发言 + 追加/号召
