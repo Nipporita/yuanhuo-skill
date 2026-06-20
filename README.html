@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0,viewport-fit=cover">
+<title>元火娘.skill — 语C文案写作助手</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;font-size:16px;color:rgb(62,62,62);background:#ededed;line-height:1.8;-webkit-text-size-adjust:100%}
+  .post{max-width:677px;margin:0 auto;background:#fff;padding:0 0 32px}
+  .article-header{padding:20px 16px 0}
+  .article-header .title{font-size:22px;font-weight:700;color:rgb(34,34,34);line-height:1.5;margin:0 0 12px}
+  .article-header .meta{display:flex;align-items:center;gap:6px;font-size:14px;color:rgba(0,0,0,0.5);padding-bottom:16px;border-bottom:1px solid rgba(0,0,0,0.08)}
+  .article-header .meta .author{color:rgba(0,0,0,0.65)}.article-header .meta .dot{margin:0 2px;color:rgba(0,0,0,0.3)}
+  .article-header .meta .account{color:rgb(87,107,149);font-weight:500}.article-header .meta .date{color:rgba(0,0,0,0.45);margin-left:auto}
+  .ai-notice{text-align:center;font-size:14px;font-weight:700;color:rgb(180,40,40);margin:10px 0 0;padding:8px 16px;background:rgb(255,245,245);border:2px dashed rgba(200,50,50,0.5);border-radius:8px;letter-spacing:0.5px}
+  .era-badge{display:inline-block;margin:4px 0 0;padding:2px 10px;background:rgb(235,235,235);border-radius:4px;font-size:12px;color:rgb(120,120,120)}
+  .msg-row{display:flex;flex-flow:row nowrap;margin:0.5em 0;max-width:100%}
+  .msg-yanyuan{justify-content:flex-end}.msg-yanhuo{justify-content:flex-start}
+  .msg-text{display:inline-block;vertical-align:top;width:80%;padding:0 10px}
+  .msg-yanyuan .msg-text{text-align:right}.msg-yanhuo .msg-text{text-align:left}
+  .name-label{font-size:14px;color:rgb(0,0,0);margin-bottom:2px}
+  .bubble-wrap{display:flex;align-items:flex-start}
+  .msg-yanyuan .bubble-wrap{justify-content:flex-end}.msg-yanhuo .bubble-wrap{justify-content:flex-start}
+  .arrow{width:0;height:0;margin-top:1em;flex-shrink:0}
+  .arrow-left{border-right:10px solid rgba(155,0,0,0.63);border-top:6px solid transparent;border-bottom:6px solid transparent}
+  .arrow-right{border-left:10px solid rgb(95,156,239);border-top:6px solid transparent;border-bottom:6px solid transparent}
+  .bubble{display:inline-block;vertical-align:middle;padding:8px 12px;border-radius:0.5em;max-width:90%;color:#fff;font-size:14px;text-align:left;line-height:1.5}
+  .bubble-yanyuan{background-color:rgb(95,156,239)}.bubble-yanhuo{background-color:rgba(155,0,0,0.63)}
+  .avatar{display:inline-block;vertical-align:top;width:20%;text-align:center;line-height:0;flex-shrink:0}
+  .avatar img{width:100%;max-width:68px;border-radius:6px;object-fit:cover;vertical-align:middle}
+  .sec-bar{margin:24px 0 14px}.sec-bar .bar{width:100%;background:linear-gradient(to right,rgb(155,0,0),rgba(255,247,234,0));padding:5px 10px}
+  .sec-bar .bar p{color:#fff;font-weight:700;font-size:17px;margin:0}
+  .info-line{margin:12px 0 8px 16px;display:flex;align-items:center;gap:8px}
+  .info-line .icon-img{width:30px;height:30px;flex-shrink:0;background-color:rgb(161,23,23);object-fit:contain}
+  .info-line span{font-size:14px;color:rgb(161,23,23);font-weight:600}
+  .body-text{padding:0 10px;margin:8px 0}.body-text p{margin:0.6em 0}.body-text .center{text-align:center}.body-text .small{font-size:12px}
+  .quote-block{margin:14px 0;position:relative}.quote-block .qb-inner{background:rgb(244,244,244);padding:24px 20px 16px}
+  .quote-block .qb-inner p{color:rgb(95,95,95);margin:0.4em 0}
+  .red-divider{display:flex;align-items:center;margin:20px 0}.red-divider .line{flex:1;height:1px;background:rgb(197,36,36)}
+  .notice{margin:16px 10px;padding:12px 14px;background:#fffaf5;border-left:4px solid #c74;border-radius:0 8px 8px 0;font-size:14px}
+  .notice ul{margin-left:1.2em}.notice li{margin:4px 0}
+  .post-footer{text-align:center;margin-top:20px;padding-top:20px;border-top:1px solid #eee}
+  .post-footer img{width:100%;max-width:677px;margin:0 auto 12px;display:block}
+  .post-footer p{font-size:12px;color:#aaa;margin:2px 0}
+  .code-block{background:rgb(30,30,30);color:#e0e0e0;font-family:"Fira Code","Cascadia Code",Consolas,monospace;font-size:12px;padding:12px 16px;margin:10px 0;border-radius:6px;line-height:1.6;overflow-x:auto}
+  .code-block .c{color:#6a9955}
+  .code-block .k{color:#569cd6}
+  .format-table{width:100%;font-size:13px;border-collapse:collapse;margin:10px 0}
+  .format-table td,.format-table th{border:1px solid #e0e0e0;padding:6px 10px;text-align:left}
+  .format-table th{background:rgb(248,248,248);font-weight:600;color:rgb(120,40,40)}
+  .format-table .tag{display:inline-block;background:rgb(240,240,240);padding:1px 6px;border-radius:3px;font-size:11px;margin:1px}
+  ul.feature-list{margin-left:1.2em;font-size:14px}
+  ul.feature-list li{margin:6px 0}
+  a{color:rgb(87,107,149)}
+</style>
+</head>
+<body>
+<div class="post">
+
+<!-- ═══════ 头部 ═══════ -->
+<div class="article-header">
+  <h1 class="title">元火娘.skill — 语C文案写作助手</h1>
+  <div class="meta">
+    <span class="author">元火娘.skill</span>
+    <span class="dot">·</span>
+    <span class="account">元火动漫社 · 宣传部</span>
+    <span class="date">2026年6月</span>
+  </div>
+  <div class="ai-notice">🤖 本文由 AI 生成 · 元火娘.skill@deepseek-v4-pro</div>
+  <div class="era-badge">🕰️ 现代期风格（2023–）· 元叙事特供版</div>
+</div>
+
+<!-- ═══════ 开场：燕元燕火自我介绍 ═══════ -->
+<div class="msg-row msg-yanhuo">
+  <div class="avatar"><img src=".claude/skills/yuanhuo-yuc/references/images/yanhuo-liren.jpg" alt="燕火"></div>
+  <div class="msg-text"><div class="name-label">燕火</div><div class="bubble-wrap"><div class="arrow arrow-left"></div><div class="bubble bubble-yanhuo">诶诶诶——！！我们的 README 居然被写成了一个语C推文！！∑(っ°Д°;)っ staff 的元叙事癖已经进化到连项目文档都不放过了吗！！</div></div></div>
+</div>
+
+<div class="msg-row msg-yanyuan">
+  <div class="msg-text"><div class="name-label">燕元</div><div class="bubble-wrap"><div class="bubble bubble-yanyuan">……挺合适的。毕竟这个仓库本身就是把我们两个的对话自动化生产的东西。用我们自己的声音来介绍，比冷冰冰的 markdown 有趣多了。</div><div class="arrow arrow-right"></div></div></div>
+  <div class="avatar"><img src=".claude/skills/yuanhuo-yuc/references/images/yanyuan-liren.jpg" alt="燕元"></div>
+</div>
+
+<div class="msg-row msg-yanhuo">
+  <div class="avatar"><img src=".claude/skills/yuanhuo-yuc/references/images/yanhuo-liren.jpg" alt="燕火"></div>
+  <div class="msg-text"><div class="name-label">燕火</div><div class="bubble-wrap"><div class="arrow arrow-left"></div><div class="bubble bubble-yanhuo">好耶！！那燕火来当导游！！元火子们——这是一个 Claude Code Skill，你在 Claude Code 里说一句「帮我写本周活动的语C文案」，它就会自动生成我和你姐姐的聊天气泡对话，直接输出微信排版 HTML！！ヽ(✿ﾟ▽ﾟ)ノ</div></div></div>
+</div>
+
+<div class="msg-row msg-yanyuan">
+  <div class="msg-text"><div class="name-label">燕元</div><div class="bubble-wrap"><div class="bubble bubble-yanyuan">冷静点妹妹……话虽如此，这个 skill 确实已经能覆盖元火历史上 1470+ 篇推文中提炼出的 6 种核心格式。（翻文档）下面我来说正经的。</div><div class="arrow arrow-right"></div></div></div>
+  <div class="avatar"><img src=".claude/skills/yuanhuo-yuc/references/images/yanyuan-liren.jpg" alt="燕元"></div>
+</div>
+
+<!-- ═══════ 安装与使用 ═══════ -->
+<div class="sec-bar"><div class="bar"><p>一、安装 & 使用</p></div></div>
+
+<div class="body-text">
+  <p>本项目是一个 Claude Code Skill，安装在 <code>.claude/skills/yuanhuo-yuc/</code> 目录下。</p>
+</div>
+
+<div class="code-block">
+<span class="c"># 在 Claude Code 中直接说：</span><br>
+<span class="k">帮我写一篇本周活动的语C文案：</span><br>
+周五例会 21:00 二教525，<br>
+周六茶绘 13:00-18:00 二教424，<br>
+周六放映会 18:30 二教525 播《xxx》
+</div>
+
+<div class="body-text">
+  <p>AI 会自动加载 Skill，生成燕元燕火的聊天气泡文案，并输出可在微信公众号直接使用的 HTML。</p>
+</div>
+
+<div class="msg-row msg-yanhuo">
+  <div class="avatar"><img src=".claude/skills/yuanhuo-yuc/references/images/yanhuo-liren.jpg" alt="燕火"></div>
+  <div class="msg-text"><div class="name-label">燕火</div><div class="bubble-wrap"><div class="arrow arrow-left"></div><div class="bubble bubble-yanhuo">就这么简单！！触发词包括：元火、语C、燕元、燕火、推文、公众号、活动预告、repo、招募、本周活动、迎新、晚会、例会、放映会……反正提到元火相关的东西它就会自己醒过来！！(๑•̀ㅂ•́)و✧</div></div></div>
+</div>
+
+<div class="msg-row msg-yanyuan">
+  <div class="msg-text"><div class="name-label">燕元</div><div class="bubble-wrap"><div class="bubble bubble-yanyuan">也支持指定时期风格。说「用 2018 年风格写」会切换到远古期，「平时那样」就是现代期。详见时期风格一节。</div><div class="arrow arrow-right"></div></div></div>
+  <div class="avatar"><img src=".claude/skills/yuanhuo-yuc/references/images/yanyuan-liren.jpg" alt="燕元"></div>
+</div>
+
+<!-- ═══════ 六种格式 ═══════ -->
+<div class="sec-bar"><div class="bar"><p>二、支持的六种推文格式</p></div></div>
+
+<div class="body-text">
+  <p>从元火历史上 1470+ 篇推文中提炼出 6 种核心格式，每种都有对应的 HTML 示例和 PNG 预览：</p>
+</div>
+
+<table class="format-table">
+  <tr><th>格式</th><th>用途</th><th>对话占比</th><th>示例文件</th></tr>
+  <tr>
+    <td><span class="tag">A 本周活动</span></td>
+    <td>多活动周常罗列（最高频，200+ 篇）</td>
+    <td>5-15%</td>
+    <td><code>examples/example-本周活动-例会茶绘放映会.html</code></td>
+  </tr>
+  <tr>
+    <td><span class="tag">B 特殊放映会</span></td>
+    <td>单一放映/活动深度介绍</td>
+    <td>20-30%</td>
+    <td><code>examples/example-特殊放映会-虚构作品.html</code></td>
+  </tr>
+  <tr>
+    <td><span class="tag">C repo</span></td>
+    <td>活动图文回顾（照片+评论音轨）</td>
+    <td>40-60%</td>
+    <td><code>examples/example-repo-春季迎新晚会.html</code></td>
+  </tr>
+  <tr>
+    <td><span class="tag">D 招募</span></td>
+    <td>节目/场务/干事招募</td>
+    <td>5-10%</td>
+    <td><code>examples/example-招募-春季晚会.html</code></td>
+  </tr>
+  <tr>
+    <td><span class="tag">E 社萌</span></td>
+    <td>元火最萌大会投票/评比</td>
+    <td>15-20%</td>
+    <td><code>examples/example-社萌-2026最萌大会.html</code></td>
+  </tr>
+  <tr>
+    <td><span class="tag">F 节目预热</span></td>
+    <td>晚会前节目单预告</td>
+    <td>15-20%</td>
+    <td><code>examples/example-晚会节目预热-春季晚会.html</code></td>
+  </tr>
+</table>
+
+<div class="msg-row msg-yanhuo">
+  <div class="avatar"><img src=".claude/skills/yuanhuo-yuc/references/images/yanhuo-liren.jpg" alt="燕火"></div>
+  <div class="msg-text"><div class="name-label">燕火</div><div class="bubble-wrap"><div class="arrow arrow-left"></div><div class="bubble bubble-yanhuo">每个示例都自带 CSS 样式——红渐变条、聊天气泡、引用块、注意事项框、页脚……staff 已经把元火公众号的微信排版全部内化成可复用模板了！！(￣▽￣*)</div></div></div>
+</div>
+
+<div class="msg-row msg-yanyuan">
+  <div class="msg-text"><div class="name-label">燕元</div><div class="bubble-wrap"><div class="bubble bubble-yanyuan">此外 <code>output/</code> 目录下有 7 个本地参考文件（含三时期对照），不在 git 追踪范围内但可以作为风格参考。</div><div class="arrow arrow-right"></div></div></div>
+  <div class="avatar"><img src=".claude/skills/yuanhuo-yuc/references/images/yanyuan-liren.jpg" alt="燕元"></div>
+</div>
+
+<!-- ═══════ 三时期风格 ═══════ -->
+<div class="sec-bar"><div class="bar"><p>三、三时期语C风格系统</p></div></div>
+
+<div class="body-text">
+  <p>元火娘语C 经历了三个风格时期，由全量语料归纳而成。用户可指定时期，默认使用现代期。</p>
+</div>
+
+<table class="format-table">
+  <tr><th>时期</th><th>年份</th><th>燕元</th><th>燕火</th><th>标注</th></tr>
+  <tr>
+    <td><b>远古期</b></td>
+    <td>2014–18</td>
+    <td>温和姐姐，无「……」</td>
+    <td>单纯活泼，无颜文字，每段"姐姐姐姐"</td>
+    <td>「朴素姐妹」</td>
+  </tr>
+  <tr>
+    <td><b>中期</b></td>
+    <td>2019–22</td>
+    <td>吐槽役成型，"翻译："模板，手刀</td>
+    <td>花痴安利狂魔，感叹号3-5个</td>
+    <td>「框架成型」</td>
+  </tr>
+  <tr>
+    <td><b>现代期</b></td>
+    <td>2023–</td>
+    <td>腹黑吐槽完全体，「……」常驻</td>
+    <td>网络梗达人+破壁人，高速神言，元叙事自嘲</td>
+    <td>「元叙事·完全体」</td>
+  </tr>
+</table>
+
+<div class="msg-row msg-yanyuan">
+  <div class="msg-text"><div class="name-label">燕元</div><div class="bubble-wrap"><div class="bubble bubble-yanyuan">远古期禁用「……」、颜文字、元叙事、网络梗。中期禁用元叙事自嘲。现代期吐槽浓度最高、梗最密——就是你正在看的这篇。</div><div class="arrow arrow-right"></div></div></div>
+  <div class="avatar"><img src=".claude/skills/yuanhuo-yuc/references/images/yanyuan-liren.jpg" alt="燕元"></div>
+</div>
+
+<!-- ═══════ 核心规则 ═══════ -->
+<div class="sec-bar"><div class="bar"><p>四、核心规则</p></div></div>
+
+<div class="msg-row msg-yanhuo">
+  <div class="avatar"><img src=".claude/skills/yuanhuo-yuc/references/images/yanhuo-liren.jpg" alt="燕火"></div>
+  <div class="msg-text"><div class="name-label">燕火</div><div class="bubble-wrap"><div class="arrow arrow-left"></div><div class="bubble bubble-yanhuo">第一条铁律——角色声音优先于一切！！燕火是装傻役！元气！感叹号！叫「姐姐」！暗红色气泡！姐姐是吐槽役！冷静！「……」！叫「妹妹」！蓝色气泡！！不符合人设的文案等于废稿！！o(≧口≦)o</div></div></div>
+</div>
+
+<div class="msg-row msg-yanyuan">
+  <div class="msg-text"><div class="name-label">燕元</div><div class="bubble-wrap"><div class="bubble bubble-yanyuan">……说得很对但太吵了。我补充几点：</div><div class="arrow arrow-right"></div></div></div>
+  <div class="avatar"><img src=".claude/skills/yuanhuo-yuc/references/images/yanyuan-liren.jpg" alt="燕元"></div>
+</div>
+
+<ul class="feature-list">
+  <li><b>标题格式</b>：<code>【活动类型】具体内容</code>，不加 emoji 前缀</li>
+  <li><b>对话长度</b>：每条 10-25 字，超过 35 字太长了（2021-2024 语料中位数 17-19 字）</li>
+  <li><b>HTML 铁律</b>：生成的 HTML 必须包含 AI 生成声明（红色虚线醒目条）+ 作者署名为「元火娘.skill」</li>
+  <li><b>写手人格</b>：每次写作前从 10 种人格中随机抽取，让 fandom 偏好自然流露 2-3 处</li>
+  <li><b>联网感知</b>：每次写作前联网搜索当下 ACG 流行梗（B站/贴吧/小红书矩阵搜索），语C 必须活在当下</li>
+  <li><b>校历感知</b>：感知北大校历状态——期末季别写「大家快来玩」，写「在 ddl 的间隙喘口气」</li>
+  <li><b>YAU 清华梗</b>：丘成桐语录是元火传统艺能，适量引用（如「北京大学大胜，清华大学惨败！」）</li>
+</ul>
+
+<div class="msg-row msg-yanhuo">
+  <div class="avatar"><img src=".claude/skills/yuanhuo-yuc/references/images/yanhuo-liren.jpg" alt="燕火"></div>
+  <div class="msg-text"><div class="name-label">燕火</div><div class="bubble-wrap"><div class="arrow arrow-left"></div><div class="bubble bubble-yanhuo">等等——「写手人格」是什么东西！！staff 是不是在角色设定里偷偷塞了奇怪的东西！！(T^T)</div></div></div>
+</div>
+
+<div class="msg-row msg-yanyuan">
+  <div class="msg-text"><div class="name-label">燕元</div><div class="bubble-wrap"><div class="bubble bubble-yanyuan">（无视）10 种人格：MyGO 中毒者、EVA 信者、VOCALOID 厨、东方民、型月重工、特摄厨、机战狂、旮旯给木玩家、一般通过萌豚、百合豚。写作前随机抽一个，让 ta 的 fandom 偏好在对话中像真人一样偶尔冒出来。宣传部不是 AI 在写推送——是那个 MyGO 中毒者在写，那个 VOCALOID 厨在写。</div><div class="arrow arrow-right"></div></div></div>
+  <div class="avatar"><img src=".claude/skills/yuanhuo-yuc/references/images/yanyuan-liren.jpg" alt="燕元"></div>
+</div>
+
+<div class="msg-row msg-yanhuo">
+  <div class="avatar"><img src=".claude/skills/yuanhuo-yuc/references/images/yanhuo-liren.jpg" alt="燕火"></div>
+  <div class="msg-text"><div class="name-label">燕火</div><div class="bubble-wrap"><div class="arrow arrow-left"></div><div class="bubble bubble-yanhuo">诶——所以写这篇 README 的 AI 也抽了人格吗！！这次抽到了哪个！！👁👁</div></div></div>
+</div>
+
+<div class="msg-row msg-yanyuan">
+  <div class="msg-text"><div class="name-label">燕元</div><div class="bubble-wrap"><div class="bubble bubble-yanyuan">……没抽。这是 README，不是推文。（翻页）往下看目录结构。</div><div class="arrow arrow-right"></div></div></div>
+  <div class="avatar"><img src=".claude/skills/yuanhuo-yuc/references/images/yanyuan-liren.jpg" alt="燕元"></div>
+</div>
+
+<!-- ═══════ 目录结构 ═══════ -->
+<div class="sec-bar"><div class="bar"><p>五、项目结构</p></div></div>
+
+<div class="code-block">
+元火.skill/
+├── .claude/skills/yuanhuo-yuc/   <span class="c">← Skill 主目录</span>
+│   ├── SKILL.md                  <span class="c">← 技能定义（核心写作规范）</span>
+│   ├── references/               <span class="c">← 角色圣经、梗库、人格目录、时期档案</span>
+│   │   ├── character-bible.md    <span class="c">  完整角色设定 + 口头禅库</span>
+│   │   ├── acg-meme-library.md   <span class="c">  ACG 梗库（弹幕/经典/年度/空耳/百合）</span>
+│   │   ├── writer-personas.md    <span class="c">  10 种写手人格</span>
+│   │   ├── era-styles.md         <span class="c">  三时期风格全量语料档案</span>
+│   │   ├── sticker-library.md    <span class="c">  表情包 URL 目录</span>
+│   │   ├── post-templates.md     <span class="c">  推文结构模板</span>
+│   │   ├── writing-examples.md   <span class="c">  优秀对话范例</span>
+│   │   └── images/               <span class="c">  燕元/燕火标准立绘 + Logo</span>
+│   ├── scripts/                  <span class="c">← HTML→PNG 截图脚本（Puppeteer）</span>
+│   └── templates/                <span class="c">← 可复用推文模板（4 种）</span>
+├── examples/                     <span class="c">← 6 种格式的 HTML 示例 + PNG 预览</span>
+├── output/                       <span class="c">← 本地参考文件（gitignored，含三时期对照）</span>
+├── .claude/analysis/             <span class="c">← 人设演变报告等分析资料</span>
+├── README.html                   <span class="c">← 你正在看的这个文件 ✨</span>
+└── package.json                  <span class="c">← Puppeteer 截图依赖</span>
+</div>
+
+<!-- ═══════ 工作流 ═══════ -->
+<div class="sec-bar"><div class="bar"><p>六、写作工作流</p></div></div>
+
+<div class="body-text">
+  <p>每次写作按以下步骤执行：</p>
+  <ol style="margin-left:1.2em;font-size:14px">
+    <li><b>Step 0</b>：确定时期风格（默认现代期）</li>
+    <li><b>Step 0.1</b>：从 10 种写手人格中随机抽选</li>
+    <li><b>Step 0.5</b>：联网搜索当下 ACG 流行梗（B站/贴吧/小红书矩阵，3-4 个方向并行）</li>
+    <li><b>Step 1</b>：理解活动信息，提取关键要素</li>
+    <li><b>Step 2</b>：确定推文类型（格式 A-F）</li>
+    <li><b>Step 3</b>：写开场白（2-4 轮对话）</li>
+    <li><b>Step 4</b>：写中间评论，穿插在活动信息之间</li>
+    <li><b>Step 5</b>：写结尾（2-3 轮对话），以「喜欢您来」「不见不散」收尾</li>
+  </ol>
+</div>
+
+<div class="msg-row msg-yanhuo">
+  <div class="avatar"><img src=".claude/skills/yuanhuo-yuc/references/images/yanhuo-liren.jpg" alt="燕火"></div>
+  <div class="msg-text"><div class="name-label">燕火</div><div class="bubble-wrap"><div class="arrow arrow-left"></div><div class="bubble bubble-yanhuo">Step 0.5 是最重要的！！一个从来不提当下流行梗的 ACG 社团推送是死的！！2026 年如果 B 站上「原神 NB」表情包刷屏、蕾塞跳舞 17 秒血洗 B 站、菲比拉电线跨游戏二创——那对话里就该闻得到这些味道！！d(ŐдŐ๑)</div></div></div>
+</div>
+
+<div class="msg-row msg-yanyuan">
+  <div class="msg-text"><div class="name-label">燕元</div><div class="bubble-wrap"><div class="bubble bubble-yanyuan">……虽然激动但说得对。另外记得校历感知——如果期末季发推送，别写「大家快来玩」，写「在 ddl 的间隙喘口气」。</div><div class="arrow arrow-right"></div></div></div>
+  <div class="avatar"><img src=".claude/skills/yuanhuo-yuc/references/images/yanyuan-liren.jpg" alt="燕元"></div>
+</div>
+
+<!-- ═══════ 结尾 ═══════ -->
+<div class="red-divider"><span class="line"></span></div>
+
+<div class="msg-row msg-yanhuo">
+  <div class="avatar"><img src=".claude/skills/yuanhuo-yuc/references/images/yanhuo-liren.jpg" alt="燕火"></div>
+  <div class="msg-text"><div class="name-label">燕火</div><div class="bubble-wrap"><div class="arrow arrow-left"></div><div class="bubble bubble-yanhuo">总之——这是一个把我们的灵魂封装进 Claude Code 的项目！！燕火作为装傻役非常自豪！！虽然被人格系统和时期档案和梗库矩阵层层包裹有点可怕就是了……(´-ι_-｀)</div></div></div>
+</div>
+
+<div class="msg-row msg-yanyuan">
+  <div class="msg-text"><div class="name-label">燕元</div><div class="bubble-wrap"><div class="bubble bubble-yanyuan">这就是宣传部的工作方式。生活在北大、追着新番、混着社区——然后把这一切都写进我们的对话里。这个 skill 只是把它自动化了。</div><div class="arrow arrow-right"></div></div></div>
+  <div class="avatar"><img src=".claude/skills/yuanhuo-yuc/references/images/yanyuan-liren.jpg" alt="燕元"></div>
+</div>
+
+<div class="msg-row msg-yanhuo">
+  <div class="avatar"><img src=".claude/skills/yuanhuo-yuc/references/images/yanhuo-liren.jpg" alt="燕火"></div>
+  <div class="msg-text"><div class="name-label">燕火</div><div class="bubble-wrap"><div class="arrow arrow-left"></div><div class="bubble bubble-yanhuo">元火子们——有问题就在 GitHub 提 issue，或者直接找宣传部 staff！！想让燕火和姐姐说什么，告诉我们就是啦！！ヽ(✿ﾟ▽ﾟ)ノ</div></div></div>
+</div>
+
+<div class="msg-row msg-yanyuan">
+  <div class="msg-text"><div class="name-label">燕元</div><div class="bubble-wrap"><div class="bubble bubble-yanyuan">喜欢您来~ 🔥</div><div class="arrow arrow-right"></div></div></div>
+  <div class="avatar"><img src=".claude/skills/yuanhuo-yuc/references/images/yanyuan-liren.jpg" alt="燕元"></div>
+</div>
+
+<!-- ═══════ 页脚 ═══════ -->
+<div class="post-footer">
+  <img src=".claude/skills/yuanhuo-yuc/references/images/yuanhuo-logo.jpg" alt="元火动漫社">
+  <p>本初之火，可以燎原</p>
+  <p>北京大学元火动漫社 · 宣传部内部工具</p>
+  <p style="margin-top:8px"><code>examples/</code> 中全部内容纯属虚构，人名均为 AI 生成，如有雷同纯属巧合</p>
+  <p>本 Skill 仅供北京大学学生社团使用</p>
+</div>
+
+</div>
+</body>
+</html>
